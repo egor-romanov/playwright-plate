@@ -782,6 +782,11 @@ ajv@^7.0.2:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
+allure-commandline@^2.13.8:
+  version "2.13.8"
+  resolved "https://registry.yarnpkg.com/allure-commandline/-/allure-commandline-2.13.8.tgz#ccc10b6296934198776a7ba3a79977cdd56eeac9"
+  integrity sha512-LxP4a/nigaH1al6TZU+JVio8j205XXYhL2ATG22tU2F7xTlEkO4SbAUY8Bq366J6C136EdZAoFUeEsGrJsI7BA==
+
 allure-js-commons@^2.0.0-beta.8:
   version "2.0.0-beta.9"
   resolved "https://registry.yarnpkg.com/allure-js-commons/-/allure-js-commons-2.0.0-beta.9.tgz#3e8fcae0ea3a0d4c8652db2192a3dbf9ebed73b2"
