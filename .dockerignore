@@ -1,0 +1,13 @@
+.editorconfig
+.eslintignore
+.eslintrc.json
+.gitignore
+.idea
+.vscode
+.git
+.docker
+node_modules
+allure-report
+allure-results
+gitlab-ci.yaml
+README.md
