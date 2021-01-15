@@ -1,5 +1,5 @@
 import Playwright, { Page, selectors }  from 'playwright';
-import { attach, attachment, JasmineAllureReporter, step } from '../jest-custom-reporter';
+import { attach, attachment, JasmineAllureReporter, step, log } from '../jest-custom-reporter';
 import { ContentType } from 'allure-js-commons';
 
 export abstract class Hooks extends JasmineAllureReporter {
@@ -7,17 +7,20 @@ export abstract class Hooks extends JasmineAllureReporter {
 
   static async before(): Promise<void> {
     await selectors.register('name', this.createNameEngine);
+
+    console.log('Before all');
   }
 
   async before(): Promise<void> {
     this.browser = await Playwright.chromium.launch({ headless: false, });
 
-    console.log('Hooks.before');
+    log('Before each');
   }
 
   async after(): Promise<void> {
     await this.browser.close();
-    console.log('Hooks.after');
+
+    log('After each');
   }
 
   async search(link: string): Promise<void> {
@@ -28,6 +31,8 @@ export abstract class Hooks extends JasmineAllureReporter {
     await this.searchQuery(page);
 
     await this.pageLoaded(page);
+
+    log('Success', 'All Done!');
   }
 
   static createNameEngine: () => SelectorEngine =  () => ({

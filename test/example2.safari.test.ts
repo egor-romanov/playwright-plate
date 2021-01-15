@@ -6,8 +6,6 @@ import { Hooks } from './hooks';
 class Suite2 extends Hooks {
   async before(): Promise<void> {
     this.browser = await Playwright.webkit.launch({ headless: false, });
-
-    console.log('Hooks.before');
   }
 
   @test
