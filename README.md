@@ -1,6 +1,7 @@
 # playwright-plate
 
 A seed for you to start frontend testing with playwright, jest, testdesk decorators and allure
+
 Special thanks to @mmisty for <https://github.com/mmisty/jest-allure2-adapter>
 
 A seed for you to start testing using mocha allure2 and ts decorators.
