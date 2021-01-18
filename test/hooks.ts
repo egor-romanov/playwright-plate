@@ -3,28 +3,48 @@ import { attach, attachment, JasmineAllureReporter, step, log } from '../jest-cu
 import { ContentType } from 'allure-js-commons';
 
 export abstract class Hooks extends JasmineAllureReporter {
-  browser: Playwright.Browser;
+  context: Playwright.BrowserContext;
+  static browserSafari: Playwright.WebKitBrowser;
+  static browserChrome: Playwright.ChromiumBrowser;
 
   static async before(): Promise<void> {
     await selectors.register('name', this.createNameEngine);
+    this.browserChrome = await Playwright.chromium.launch({ headless: true, });
+    this.browserSafari = await Playwright.webkit.launch({ headless: true, });
 
     console.log('Before all');
   }
 
+  static async after(): Promise<void> {
+    await this.browserChrome.close();
+    await this.browserSafari.close();
+
+    console.log('After all');
+  }
+
+  // Abstract method to specify browser context, could be created from browserSafari | browserChrome
+  abstract createContext(): Promise<Playwright.BrowserContext>;
+
   async before(): Promise<void> {
-    this.browser = await Playwright.chromium.launch({ headless: false, });
+    this.context = await this.createContext();
+    this.context.on('page', page => {
+      page.on('pageerror', exception => {
+        log('Console error', `Uncaught exception: "${exception}"`);
+        throw exception;
+      });
+    });
 
     log('Before each');
   }
 
   async after(): Promise<void> {
-    await this.browser.close();
+    await this.context.close();
 
     log('After each');
   }
 
   async search(link: string): Promise<void> {
-    const page = await this.browser.newPage();
+    const page = await this.context.newPage();
 
     await this.goTo(page, link);
 

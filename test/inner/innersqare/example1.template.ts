@@ -1,8 +1,8 @@
-import { suite, test } from '@testdeck/jest';
-import { Hooks } from './hooks';
+import Playwright from 'playwright';
+import { test } from '@testdeck/jest';
+import { Hooks } from '../../hooks';
 
-@suite
-class Suite2 extends Hooks {
+export abstract class Example3 extends Hooks {
   @test
   async '[chrome] google'(): Promise<void> {
     await this.search('https://google.com/');

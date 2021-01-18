@@ -22,8 +22,9 @@
       "paths": {
           "*": [
               "node_modules/*",
-              "./types/*"
-          ]
+              "./types/*",
+          ],
+            "test/*": [ "test/*" ]
       },
       "typeRoots": [
           "./node_modules/@types/",

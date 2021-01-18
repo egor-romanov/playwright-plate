@@ -8,3 +8,5 @@ coverage
 allure-report/
 allure-results/
 .env
+/test/generated
+/videos

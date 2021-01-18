@@ -41,7 +41,7 @@ module.exports = {
       'exports': 'never',
       'functions': 'never',
     },],
-    'no-unused-vars': 0,
+    'no-unused-vars': 'off',
   },
   'overrides': [
     {
